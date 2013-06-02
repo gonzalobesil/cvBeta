@@ -27,7 +27,7 @@ public class MyExpandableListAdapter extends BaseExpandableListAdapter {
 
 	public Object getChild(int groupPosition, int childPosition) {
 		Trayecto t = (Trayecto) preguntas.get(groupPosition);
-		return "Destino :" + t.getDestino_lugar_id();
+		return "Frecuencia :" + t.getFrecuencia();
 //		return respuestas[groupPosition][childPosition];
 	}
 
@@ -76,7 +76,7 @@ public class MyExpandableListAdapter extends BaseExpandableListAdapter {
 	public Object getGroup(int groupPosition) {
 		//hora empresa frecuencia------------------------------------------------------------------------------
 		Trayecto t = (Trayecto) preguntas.get(groupPosition);
-		return t.getHora() + t.getDestino_lugar_id();
+		return t.getHora();
 	}
 
 	public int getGroupCount() {

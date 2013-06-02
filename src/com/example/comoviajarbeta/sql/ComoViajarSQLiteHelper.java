@@ -18,7 +18,7 @@ public class ComoViajarSQLiteHelper extends SQLiteOpenHelper {
 	private static final String LOGTAG = "LOG_COMOVIAJAR";
 
 	private static final String DATABASE_NAME = "comoviajar.db";
-	private static final int DATABASE_VERSION = 6;
+	private static final int DATABASE_VERSION = 10;
 
 
 
@@ -72,7 +72,9 @@ public class ComoViajarSQLiteHelper extends SQLiteOpenHelper {
 					TrayectoConstantes.COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
 					TrayectoConstantes.COLUMN_ORIGEN_ID + " TEXT, " +
 					TrayectoConstantes.COLUMN_DESTINO_ID + " TEXT, " +
-					TrayectoConstantes.COLUMN_HORA + " TEXT " +
+					TrayectoConstantes.COLUMN_HORA + " TEXT, " +
+					TrayectoConstantes.COLUMN_FRECUENCIA + " TEXT, " +
+					TrayectoConstantes.COLUMN_EMPRESA_ID + " TEXT " + 
 
 			")";
 			
