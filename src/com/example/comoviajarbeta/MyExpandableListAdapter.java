@@ -3,6 +3,7 @@ package com.example.comoviajarbeta;
 import java.util.ArrayList;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
@@ -27,7 +28,15 @@ public class MyExpandableListAdapter extends BaseExpandableListAdapter {
 
 	public Object getChild(int groupPosition, int childPosition) {
 		Trayecto t = (Trayecto) preguntas.get(groupPosition);
-		return "Frecuencia :" + t.getFrecuencia();
+		if(childPosition == 0)
+		{
+			return "Frecuencia :" + t.getFrecuencia();
+		}
+		else
+		{
+			return "Empresa: " + t.getEmpresa_id();
+		}
+		
 //		return respuestas[groupPosition][childPosition];
 	}
 
@@ -36,7 +45,7 @@ public class MyExpandableListAdapter extends BaseExpandableListAdapter {
 	}
 
 	public int getChildrenCount(int groupPosition) {
-		return 1;
+		return 2;
 //      return respuestas[groupPosition].length;
 	}
 
@@ -61,7 +70,7 @@ public class MyExpandableListAdapter extends BaseExpandableListAdapter {
 		//Including a custom view for the child image and text
 		View inflatedView = View.inflate(activity.getApplicationContext(),
 				R.layout.child, null);
-		inflatedView.setPadding(50, 0, 0, 0);
+		//inflatedView.setPadding(50, 0, 0, 0);
 		TextView textView =(TextView)inflatedView.findViewById(R.id.textView1);
 		
 		//lets set up a custom font
