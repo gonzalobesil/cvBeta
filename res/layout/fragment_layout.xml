@@ -1,0 +1,53 @@
+<com.example.comoviajarbeta.DashboardLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_weight="1"
+    android:background="#f8f9fe" >
+	<!--  News Feed Button -->
+
+    <Button
+        android:id="@+id/btn_horarios"
+        style="@style/DashboardButton"
+        android:drawableTop="@drawable/btn_horarios"
+        android:text="Horarios" />
+    
+	<!--  Friends Button -->
+
+    <Button
+        android:id="@+id/btn_estaciones"
+        style="@style/DashboardButton"
+        android:drawableTop="@drawable/btn_estaciones"
+        android:text="Estaciones" />
+    
+	<!--  Messages Button -->
+    <Button
+        android:id="@+id/btn_reportar"
+        style="@style/DashboardButton"
+        android:drawableTop="@drawable/btn_reportar"
+        android:text="Reportar" />
+	
+    <!--  Places Button -->
+    <Button
+        android:id="@+id/btn_places"
+        style="@style/DashboardButton"
+        android:drawableTop="@drawable/btn_places"
+        android:text="Alertas" />
+
+    <!--  Events Button -->
+
+    <Button
+        android:id="@+id/btn_rutas"
+        style="@style/DashboardButton"
+        android:drawableTop="@drawable/btn_events"
+        android:text="Rutas" />
+
+    <!--  Photos Button -->
+
+    <Button
+        android:id="@+id/btn_empresas"
+        style="@style/DashboardButton"
+        android:drawableTop="@drawable/btn_photos"
+        android:text="Empresas" />
+
+</com.example.comoviajarbeta.DashboardLayout>

@@ -1,0 +1,148 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".TrayectoActivity" >
+
+    <TextView
+        android:id="@+id/lblOrigen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop = "true"
+        android:layout_marginRight="24dp"
+        android:text="Orígen" />
+
+    <AutoCompleteTextView
+        android:id="@+id/origen"
+        android:layout_width="140dp"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/lblOrigen"
+        android:ems="10"
+        android:textColor="#000000"
+        android:textSize="18sp" >
+    </AutoCompleteTextView>
+
+    <TextView
+        android:id="@+id/lblDestino"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_below="@+id/lblOrigen"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="40dp"
+        android:text="Destino" />
+
+    <AutoCompleteTextView
+        android:id="@+id/destino"
+        android:layout_marginTop="50dp"
+        android:layout_width="140dp"
+        android:layout_height="wrap_content"
+		android:layout_toRightOf="@+id/lblDestino"
+        android:ems="10"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        android:clickable="true" />
+
+ <Button
+        android:id="@+id/btnInvertir"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnBuscar"
+        android:layout_toRightOf="@+id/destino"
+        android:text="Invertir" />
+
+ <Button
+        android:id="@+id/btnBuscar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/destino"
+        android:text="Buscar" />
+ 
+   <!--  <TextView
+        android:id="@+id/lblAvion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="20dp"
+        android:layout_y="110dp"
+        android:text="Avión" />
+
+    <CheckBox
+        android:id="@+id/chkAvion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="23dp"
+        android:layout_y="120dp"
+        android:textSize="8sp" />
+
+    <TextView
+        android:id="@+id/lblOmnibus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="82dp"
+        android:layout_y="110dp"
+        android:text="Omnibus" />
+
+    <CheckBox
+        android:id="@+id/chkOmnibus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="95dp"
+        android:layout_y="120dp"
+        android:textSize="8sp" />
+
+    <TextView
+        android:id="@+id/lblBarco"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="155dp"
+        android:layout_y="110dp"
+        android:text="Barco" />
+    
+    <CheckBox
+        android:id="@+id/chkBarco"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="155dp"
+        android:layout_y="120dp"
+        android:textSize="8sp" />
+
+    <TextView
+        android:id="@+id/lblTren"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_x="213dp"
+        android:layout_y="110dp"
+        android:text="Tren" />
+
+    <CheckBox
+        android:id="@+id/chkTren"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="213dp"
+        android:layout_y="120dp"
+        android:textSize="8sp" />
+
+    <ListView
+        android:id="@+id/ListViewTrayectos"
+        android:layout_width="288dp"
+        android:layout_height="283dp"
+        android:layout_x="6dp"
+        android:layout_y="170dp" >
+    </ListView>
+ -->
+
+	    <ExpandableListView
+	        android:id="@android:id/list"
+	        android:layout_width="fill_parent"
+	        android:layout_height="200dp"   
+	        android:divider="@null"
+	        android:layout_below="@+id/destino"
+	        android:groupIndicator="@drawable/icon" >
+	    </ExpandableListView>
+
+</RelativeLayout>
+
+<!-- android:layout_x="16dp" -->

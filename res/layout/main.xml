@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/home_root"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    
+    <!-- Include Action Bar -->
+    	<include layout="@layout/actionbar_layout"/>
+    	
+    	<!--  Include Fragmented dashboard -->	
+		<include layout="@layout/fragment_layout"/>	
+		
+		<!--  Include Footer -->
+		<include layout="@layout/footer_layout"/>
+
+   <!--  <Button
+        android:id="@+id/btnTrayectos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Trayectos" />
+    
+    <Button
+        android:id="@+id/btnEstaciones"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Estaciones" /> -->
+        
+       <!--  <Button
+        android:id="@+id/btnEmpresas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Empresas" />
+    
+    <Button
+        android:id="@+id/btnRutas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Rutas" /> -->
+
+</LinearLayout>

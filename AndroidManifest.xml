@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.comoviajarbeta"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk android:minSdkVersion="8" />
+
+    <application
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name" >
+        <activity
+            android:label="@string/app_name"
+            android:name=".mainActivity" >
+            <intent-filter >
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- News Feed Activity -->
+
+
+        <!-- Friends Activity -->
+         <activity android:name=".TrayectoActivity" ></activity>
+        <activity android:name=".DepartamentosActivity" ></activity>
+        <activity android:name=".EstacionesActivity" ></activity>
+        <activity android:name=".EstacionDetalleActivity" ></activity>
+        <activity android:name=".RutaDetalleActivity" ></activity>
+        <activity android:name=".EmpresasActivity" ></activity>
+        <activity android:name=".RutasActivity" ></activity>
+        <activity android:name=".EstacionesCercanasActivity" ></activity>
+		<activity android:name=".AccidenteActivity" ></activity>
+		<activity android:name=".TransitoActivity" ></activity>
+		<activity android:name=".PeligroActivity" ></activity>
+		<activity android:name=".LugaresActivity" ></activity>
+		<activity android:name=".PoliciaActivity" ></activity>
+		<activity android:name=".ReportarActivity" ></activity>
+		<activity android:name=".TabsActivity" ></activity>
+
+       <!-- Messages Activity 
+        <activity android:name="com.androidhive.dashboard.MessagesActivity" ></activity>
+
+        Places Activity
+        <activity android:name="com.androidhive.dashboard.PlacesActivity" ></activity>
+
+        Events Activity
+        <activity android:name="com.androidhive.dashboard.EventsActivity" ></activity>
+        
+        Photos Activity
+        <activity android:name="com.androidhive.dashboard.PhotosActivity" ></activity> -->
+    </application>
+    <uses-permission android:name="android.permission.CAMERA" />
+	<uses-permission android:name="android.permission.INTERNET" />
+	<uses-permission android:name="android.permission.CALL_PHONE" />
+	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+</manifest>
+
+<!-- <?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.comoviajarbeta"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="10"
+        android:targetSdkVersion="10" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name" >
+        <activity
+            android:name="com.example.comoviajarbeta.TrayectoActivity"
+            android:label="@string/app_name" >
+        </activity>
+         <activity
+            android:name="com.example.comoviajarbeta.mainActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.example.comoviajarbeta.EstacionesActivity"
+            android:label="@string/app_name" >
+        </activity>
+    </application>
+	<uses-permission android:name="android.permission.CAMERA" />
+	<uses-permission android:name="android.permission.INTERNET" />
+</manifest> -->

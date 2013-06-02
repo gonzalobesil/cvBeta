@@ -1,0 +1,43 @@
+<com.example.comoviajarbeta.DashboardLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_weight="1"
+    android:background="#f8f9fe" >
+	<!--  News Feed Button -->
+
+    <Button
+        android:id="@+id/btn_policia"
+        style="@style/DashboardButton"
+        android:drawableTop="@drawable/btn_policia"
+        android:text="Policia" />
+    
+	<!--  Friends Button -->
+
+    <Button
+        android:id="@+id/btn_transito"
+        style="@style/DashboardButton"
+        android:drawableTop="@drawable/btn_transito"
+        android:text="Trafico" />
+    
+	<!--  Messages Button -->
+
+    <Button
+        android:id="@+id/btn_accidente"
+        style="@style/DashboardButton"
+        android:drawableTop="@drawable/btn_accidente"
+        android:text="Accidente" />
+	
+    <!--  Places Button -->
+
+    <Button
+        android:id="@+id/btn_peligro"
+        style="@style/DashboardButton"
+        android:drawableTop="@drawable/btn_peligro"
+        android:text="Peligro" />
+
+    <!--  Events Button -->
+
+    
+
+</com.example.comoviajarbeta.DashboardLayout>
