@@ -60,46 +60,22 @@
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/destino"
         android:text="Buscar" />
- 
-   <!--  <TextView
-        android:id="@+id/lblAvion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_x="20dp"
-        android:layout_y="110dp"
-        android:text="Avión" />
 
     <CheckBox
         android:id="@+id/chkAvion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_x="23dp"
-        android:layout_y="120dp"
-        android:textSize="8sp" />
+        android:layout_below="@+id/btnInvertir"
+        android:button="@drawable/selector_check_bus"
+        android:textSize="25sp" />
 
-    <TextView
-        android:id="@+id/lblOmnibus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_x="82dp"
-        android:layout_y="110dp"
-        android:text="Omnibus" />
-
-    <CheckBox
+   <!--  <CheckBox
         android:id="@+id/chkOmnibus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_x="95dp"
         android:layout_y="120dp"
         android:textSize="8sp" />
-
-    <TextView
-        android:id="@+id/lblBarco"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_x="155dp"
-        android:layout_y="110dp"
-        android:text="Barco" />
     
     <CheckBox
         android:id="@+id/chkBarco"
@@ -109,13 +85,6 @@
         android:layout_y="120dp"
         android:textSize="8sp" />
 
-    <TextView
-        android:id="@+id/lblTren"
-        android:layout_width="wrap_content"
-        android:layout_height="20dp"
-        android:layout_x="213dp"
-        android:layout_y="110dp"
-        android:text="Tren" />
 
     <CheckBox
         android:id="@+id/chkTren"
@@ -124,14 +93,6 @@
         android:layout_x="213dp"
         android:layout_y="120dp"
         android:textSize="8sp" />
-
-    <ListView
-        android:id="@+id/ListViewTrayectos"
-        android:layout_width="288dp"
-        android:layout_height="283dp"
-        android:layout_x="6dp"
-        android:layout_y="170dp" >
-    </ListView>
  -->
 
 	    <ExpandableListView
@@ -139,7 +100,7 @@
 	        android:layout_width="fill_parent"
 	        android:layout_height="200dp"   
 	        android:divider="@null"
-	        android:layout_below="@+id/destino"
+	        android:layout_below="@+id/chkAvion"
 	        android:groupIndicator="@drawable/icon" >
 	    </ExpandableListView>
 
