@@ -30,12 +30,13 @@ public class ReportarFunciones {
 	 * @param email
 	 * @param password
 	 * */
-	public JSONObject reportar(String latitud, String longitud, String tipoAlerta){
+	public JSONObject reportar(String latitud, String longitud,String comentario, String tipoAlerta){
 		// Building Parameters
 		List<NameValuePair> params = new ArrayList<NameValuePair>();
 		params.add(new BasicNameValuePair("latitud", latitud));
 		params.add(new BasicNameValuePair("longitud", longitud));
 		params.add(new BasicNameValuePair("tipoAlerta", tipoAlerta));
+		params.add(new BasicNameValuePair("comentario", comentario));
 		JSONObject json = jsonParser.getJSONFromUrl(registrarAlertaURL, params);
 		// return json
 		// Log.e("JSON", json.toString());

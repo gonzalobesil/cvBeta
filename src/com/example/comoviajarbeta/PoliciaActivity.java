@@ -21,6 +21,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -42,6 +43,7 @@ public class PoliciaActivity extends Activity {
 	CustomAdapterRuta adapter;
 	public  PoliciaActivity CustomListView = null;
 	Button btnEnviar;
+	EditText textComentario;
 	TextView reportarErrorMsg;
 	
 	@Override
@@ -61,6 +63,7 @@ public class PoliciaActivity extends Activity {
         
     	// Importar los elementos contenidos en el layout
         btnEnviar = (Button) findViewById(R.id.btnEnviar);
+        textComentario = (EditText) findViewById(R.id.textComentario);
         reportarErrorMsg = (TextView) findViewById(R.id.reportar_error);
 		
      // Login button Click Event	   			
@@ -84,16 +87,18 @@ public class PoliciaActivity extends Activity {
 
 		// check if GPS enabled		
 		if(gps.canGetLocation()){
-
+			String comentario="";
 			String latitud = String.valueOf(gps.getLatitude());
 			String longitud = String.valueOf(gps.getLongitude());
-
+			if(textComentario.getText().toString()!="Comentario")
+				comentario=textComentario.getText().toString();
+			
 			//Location location = new Location("");
 			//location.setLatitude(latitude);
 			//location.setLongitude(longitude);
 
 			ReportarFunciones reportarFunciones = new ReportarFunciones();
-			JSONObject json = reportarFunciones.reportar(latitud, longitud, "1");
+			JSONObject json = reportarFunciones.reportar(latitud, longitud,comentario, "1");
 			
 			// check for login response
 			try {
