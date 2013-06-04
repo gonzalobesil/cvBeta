@@ -11,6 +11,7 @@ import com.example.comoviajarbeta.dao.EmpresaDataSource;
 import com.example.comoviajarbeta.dao.EstacionDataSource;
 import com.example.comoviajarbeta.dao.LugarDataSource;
 import com.example.comoviajarbeta.dao.RutaDataSource;
+import com.example.comoviajarbeta.dao.TransporteDataSource;
 import com.example.comoviajarbeta.dao.TrayectoDataSource;
 
 public class mainActivity extends Activity {
@@ -22,6 +23,7 @@ public class mainActivity extends Activity {
 	private DepartamentoDataSource departamentoDataSource;
 	private LugarDataSource lugarDataSource;
 	private TrayectoDataSource trayectoDataSource;
+	private TransporteDataSource transporteDataSource;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -183,6 +185,11 @@ public class mainActivity extends Activity {
 		if(trayectoDataSource.getTrayectos().isEmpty())
 		{
 			trayectoDataSource.createTrayectosPrueba();
+		}
+		transporteDataSource = new TransporteDataSource(this);
+		if(transporteDataSource.getTransporte().isEmpty())
+		{
+			transporteDataSource.createTransportesPrueba();
 		}
 		// Set the list adapter and get TODOs list via DAO
 		//setListAdapter(new ListAdapter(this, dataSource.getEstaciones()));

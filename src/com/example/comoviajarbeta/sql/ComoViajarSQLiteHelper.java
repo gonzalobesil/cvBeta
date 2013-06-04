@@ -18,7 +18,7 @@ public class ComoViajarSQLiteHelper extends SQLiteOpenHelper {
 	private static final String LOGTAG = "LOG_COMOVIAJAR";
 
 	private static final String DATABASE_NAME = "comoviajar.db";
-	private static final int DATABASE_VERSION = 10;
+	private static final int DATABASE_VERSION = 12;
 
 
 
@@ -74,8 +74,15 @@ public class ComoViajarSQLiteHelper extends SQLiteOpenHelper {
 					TrayectoConstantes.COLUMN_DESTINO_ID + " TEXT, " +
 					TrayectoConstantes.COLUMN_HORA + " TEXT, " +
 					TrayectoConstantes.COLUMN_FRECUENCIA + " TEXT, " +
-					TrayectoConstantes.COLUMN_EMPRESA_ID + " TEXT " + 
+					TrayectoConstantes.COLUMN_EMPRESA_ID + " TEXT, " +
+					TrayectoConstantes.COLUMN_TIPOTRANSPORTE_ID + " TEXT " +
 
+			")";
+	
+	private static final String TABLE_CREATE_TRANSPORTES =
+			"CREATE TABLE " + TransporteConstantes.TABLE_TRANSPORTES + " (" +
+					TransporteConstantes.COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+					TransporteConstantes.COLUMN_DESCRIPCION + " TEXT " +
 			")";
 			
 	public ComoViajarSQLiteHelper(Context context) {
@@ -104,6 +111,8 @@ public class ComoViajarSQLiteHelper extends SQLiteOpenHelper {
 		Log.i(LOGTAG,"La tabla"+EmpresaConstantes.TABLE_EMPRESAS+"  ha sido creada exitosamente");
 		db.execSQL(TABLE_CREATE_TRAYECTOS);
 		Log.i(LOGTAG,"La tabla"+TrayectoConstantes.TABLE_TRAYECTOS+"  ha sido creada exitosamente");
+		db.execSQL(TABLE_CREATE_TRANSPORTES);
+		Log.i(LOGTAG,"La tabla"+TransporteConstantes.TABLE_TRANSPORTES+"  ha sido creada exitosamente");
 	}
 
 	/**
@@ -124,6 +133,8 @@ public class ComoViajarSQLiteHelper extends SQLiteOpenHelper {
 		Log.i(LOGTAG,"La tabla"+EmpresaConstantes.TABLE_EMPRESAS+"  ha sido borrada exitosamente");
 		db.execSQL("DROP TABLE IF EXISTS "+TrayectoConstantes.TABLE_TRAYECTOS);
 		Log.i(LOGTAG,"La tabla"+TrayectoConstantes.TABLE_TRAYECTOS+"  ha sido borrada exitosamente");
+		db.execSQL("DROP TABLE IF EXISTS "+TransporteConstantes.TABLE_TRANSPORTES);
+		Log.i(LOGTAG,"La tabla"+TransporteConstantes.TABLE_TRANSPORTES+"  ha sido borrada exitosamente");
 		// Recreate table
 		onCreate(db);
 	}

@@ -14,6 +14,7 @@ import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,6 +47,8 @@ public class TrayectoActivity extends /*Activity,*/ExpandableListActivity {
 	Button btnBuscar;
 	AutoCompleteTextView ingresoOrigen;
 	AutoCompleteTextView destino;
+	CheckBox chkOmnibus;
+	CheckBox chkBarco;
 	
 	HashMap<String, Long> mapaLugaresOrigen = new HashMap<String,Long>();
 	HashMap<String, Long> mapaLugaresDestino = new HashMap<String,Long>();
@@ -80,6 +83,8 @@ public class TrayectoActivity extends /*Activity,*/ExpandableListActivity {
 		destino = (AutoCompleteTextView) findViewById(R.id.destino);
 		lblOrigen = (TextView) findViewById(R.id.lblOrigen);
 		lblDestino = (TextView) findViewById(R.id.lblDestino);
+		chkOmnibus = (CheckBox) findViewById(R.id.chkOmnibus);
+		chkBarco = (CheckBox) findViewById(R.id.chkBarco);
 		   
 	   ingresoOrigen.setThreshold(1);
 	   String []origenes = new String[listaOrigenes.size()];
@@ -195,11 +200,23 @@ public class TrayectoActivity extends /*Activity,*/ExpandableListActivity {
 						if(validarOrigen(destinoSeleccionado, listaDestinos))
 						{
 							
-							setListData();
+							String transporte = "";
 							
+							if(chkOmnibus.isChecked())
+							{
+								transporte = transporte + "1";
+							}
+							
+							if(chkBarco.isChecked())
+							{
+								transporte = transporte + "2";
+							}
+							
+							
+							Long idOrigen = mapaLugaresOrigen.get(ingresoOrigen.getText().toString());
 							Long idDestino = mapaLugaresDestino.get(destinoSeleccionado);
 							
-
+							setListData(idOrigen.toString(),idDestino.toString(),transporte);
 							
 							//expandable list view------------------------------------------------------------------
 							//preguntas = getResources().getStringArray(R.array.countries);
@@ -251,13 +268,13 @@ public class TrayectoActivity extends /*Activity,*/ExpandableListActivity {
 		 return true;
 	}
 	
-	  public void setListData()
+	  public void setListData(String idOrigen, String idDestino, String transporte)
 	    {
 	    	
 			// Create DAO object
 			trayectoDataSource = new TrayectoDataSource(this);
 
-			for (Trayecto e : trayectoDataSource.getTrayectos()) {
+			for (Trayecto e : trayectoDataSource.getTrayectosTransportes(idOrigen, idDestino, transporte)) {
 		   
 				/******** Take Model Object in ArrayList **********/
 				CustomListViewValuesArr.add(e);

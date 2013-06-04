@@ -62,11 +62,20 @@
         android:text="Buscar" />
 
     <CheckBox
-        android:id="@+id/chkAvion"
+        android:id="@+id/chkOmnibus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/btnInvertir"
         android:button="@drawable/selector_check_bus"
+        android:textSize="25sp" />
+    
+    <CheckBox
+        android:id="@+id/chkBarco"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnInvertir"
+        android:layout_toRightOf="@+id/chkOmnibus"
+        android:button="@drawable/selector_check_barco"
         android:textSize="25sp" />
 
    <!--  <CheckBox
@@ -100,7 +109,7 @@
 	        android:layout_width="fill_parent"
 	        android:layout_height="200dp"   
 	        android:divider="@null"
-	        android:layout_below="@+id/chkAvion"
+	        android:layout_below="@+id/chkOmnibus"
 	        android:groupIndicator="@drawable/icon" >
 	    </ExpandableListView>
 

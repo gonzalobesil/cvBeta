@@ -11,7 +11,7 @@ public class Trayecto {
 	private String duracion;
 	private String ruta;
 	private long empresa_id;
-	private String tipotransporte_id;
+	private long tipotransporte_id;
 	private String fecha;
 	private String habilitado;
 	private String directo;
@@ -73,10 +73,10 @@ public class Trayecto {
 	public void setEmpresa_id(long empresa_id) {
 		this.empresa_id = empresa_id;
 	}
-	public String getTipotransporte_id() {
+	public long getTipotransporte_id() {
 		return tipotransporte_id;
 	}
-	public void setTipotransporte_id(String tipotransporte_id) {
+	public void setTipotransporte_id(long tipotransporte_id) {
 		this.tipotransporte_id = tipotransporte_id;
 	}
 	public String getFecha() {
