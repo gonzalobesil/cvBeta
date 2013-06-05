@@ -7,48 +7,6 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".PoliciaActivity" >
-    
-
-
-	<Button
-	    android:id="@+id/btn_policiaEscondida"
-	    style="@style/DashboardButton"
-	    android:layout_alignBaseline="@+id/btn_policiaescondida"
-	    android:layout_alignBottom="@+id/btn_policiaescondida"
-	    android:layout_alignParentRight="true"
-	    android:layout_marginRight="47dp"
-	    android:drawableTop="@drawable/btn_policiaescondida"
-	    android:text="Visible" />
-
-	<Button
-	    android:id="@+id/btn_policiavisible"
-	    style="@style/DashboardButton"
-	    android:layout_alignParentTop="true"
-	    android:layout_marginRight="33dp"
-	    android:layout_marginTop="18dp"
-	    android:layout_toLeftOf="@+id/btn_policiavisible"
-	    android:drawableTop="@drawable/btn_policiavisible"
-	    android:text="Escondida" />
-
-	<Button
-	    android:id="@+id/btnEnviar"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:layout_below="@+id/editText1"
-	    android:layout_centerHorizontal="true"
-	    android:layout_marginTop="92dp"
-	    android:text="Enviar" />
-
-	<EditText
-	    android:id="@+id/textComentario"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:layout_below="@+id/btn_policiavisible"
-	    android:layout_centerHorizontal="true"
-	    android:layout_marginTop="31dp"
-	    android:ems="10"
-	    android:inputType="textMultiLine"
-	    android:text="Comentario" />
        <!--  Error message -->
     <TextView android:id="@+id/reportar_error"
    		android:layout_width="fill_parent"
@@ -56,6 +14,47 @@
    		android:textColor="#e30000"
    		android:padding="10dip"
    		android:textStyle="bold"/>
+
+    <Button
+        android:id="@+id/btnEnviar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textComentario"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="97dp"
+        android:text="Enviar" />
+
+    <Button
+        android:id="@+id/btn_policiavisible"
+        style="@style/DashboardButton"
+        android:layout_alignLeft="@+id/textComentario"
+        android:layout_alignTop="@+id/reportar_error"
+        android:layout_marginTop="20dp"
+        android:drawableTop="@drawable/btn_policiavisible"
+        android:text="Escondida" />
+
+    <EditText
+        android:id="@+id/textComentario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:ems="10"
+        android:inputType="textMultiLine"
+        android:text="Comentario" >
+
+        <requestFocus />
+    </EditText>
+
+    <Button
+        android:id="@+id/btn_policiaEscondida"
+        style="@style/DashboardButton"
+        android:layout_alignBaseline="@+id/btn_policiavisible"
+        android:layout_alignBottom="@+id/btn_policiavisible"
+        android:layout_alignRight="@+id/textComentario"
+        android:drawableTop="@drawable/btn_policiaescondida"
+        android:text="Visible" />
+
 </RelativeLayout>
 
 <!-- android:layout_x="16dp" -->
