@@ -74,6 +74,18 @@ public class TrayectoDataSource {
 		long  id2= db.insert(TrayectoConstantes.TABLE_TRAYECTOS, null, contentValues);
 		Log.i(LOGTAG,"Se inserto un nuevo trayecto id:"+id2);
 		
+		contentValues.put(TrayectoConstantes.COLUMN_ORIGEN_ID, "2");
+		contentValues.put(TrayectoConstantes.COLUMN_DESTINO_ID, "1");
+		contentValues.put(TrayectoConstantes.COLUMN_HORA, "23:30");
+		contentValues.put(TrayectoConstantes.COLUMN_FRECUENCIA, "Omnibus");
+		contentValues.put(TrayectoConstantes.COLUMN_EMPRESA_ID, "1");
+		contentValues.put(TrayectoConstantes.COLUMN_TIPOTRANSPORTE_ID, "1");
+		
+	    // Insert into DB
+		long  id3= db.insert(TrayectoConstantes.TABLE_TRAYECTOS, null, contentValues);
+		Log.i(LOGTAG,"Se inserto un nuevo trayecto id:"+id3);
+		
+		close();
 
 	}
 	
@@ -112,6 +124,8 @@ public class TrayectoDataSource {
 	    	// Move to the next result
 	    	cursor.moveToNext();
 	    }
+	    
+	    close();
 		
 		return trayectoList;
 	}
@@ -162,6 +176,8 @@ public class TrayectoDataSource {
 	    	// Move to the next result
 	    	cursor.moveToNext();
 	    }
+	    
+	    close();
 		
 		return trayectoList;
 	}
