@@ -18,7 +18,7 @@ import com.example.comoviajarbeta.data.Estacion;
  *
  */
 public class ListAdapter extends ArrayAdapter<Estacion> {
-
+//
 	// List context
     private final Context context;
     // List values
