@@ -38,6 +38,10 @@
 		<activity android:name=".PoliciaActivity" ></activity>
 		<activity android:name=".ReportarActivity" ></activity>
 		<activity android:name=".TabsActivity" ></activity>
+		        <activity
+            android:label="Upload" 
+            android:name=".upload">
+        </activity>
 
        <!-- Messages Activity 
         <activity android:name="com.androidhive.dashboard.MessagesActivity" ></activity>

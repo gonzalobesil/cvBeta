@@ -6,7 +6,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".PoliciaActivity" >
+    tools:context=".PoliciaActivity" 
+    android:background="#f8f9fe">
        <!--  Error message -->
     <TextView android:id="@+id/reportar_error"
    		android:layout_width="fill_parent"
@@ -15,45 +16,54 @@
    		android:padding="10dip"
    		android:textStyle="bold"/>
 
-    <Button
-        android:id="@+id/btnEnviar"
-        android:layout_width="wrap_content"
+    <CheckBox
+        android:id="@+id/chkPoliciaEscondida"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textComentario"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="97dp"
-        android:text="Enviar" />
+        android:layout_alignRight="@+id/textComentario"
+        android:layout_below="@+id/reportar_error"
+        android:button="@drawable/selector_policia_oculta"
+        android:textSize="25sp" />
 
-    <Button
-        android:id="@+id/btn_policiavisible"
-        style="@style/DashboardButton"
+    <CheckBox
+        android:id="@+id/chkPoliciaVisible"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/chkPoliciaEscondida"
+        android:layout_alignBottom="@+id/chkPoliciaEscondida"
         android:layout_alignLeft="@+id/textComentario"
-        android:layout_alignTop="@+id/reportar_error"
-        android:layout_marginTop="20dp"
-        android:drawableTop="@drawable/btn_policiavisible"
-        android:text="Escondida" />
+        android:button="@drawable/selector_policia_visible"
+        android:textSize="25sp" />
 
     <EditText
         android:id="@+id/textComentario"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/chkPoliciaEscondida"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
+        android:layout_marginTop="21dp"
         android:ems="10"
         android:inputType="textMultiLine"
-        android:text="Comentario" >
-
-        <requestFocus />
-    </EditText>
+        android:text="Comentario" />
 
     <Button
-        android:id="@+id/btn_policiaEscondida"
-        style="@style/DashboardButton"
-        android:layout_alignBaseline="@+id/btn_policiavisible"
-        android:layout_alignBottom="@+id/btn_policiavisible"
+        android:id="@+id/btnEnviar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textComentario"
+        android:layout_alignParentBottom="true"
         android:layout_alignRight="@+id/textComentario"
-        android:drawableTop="@drawable/btn_policiaescondida"
-        android:text="Visible" />
+        android:layout_marginBottom="37dp"
+        android:text="Enviar" />
+
+    <ImageButton
+        android:id="@+id/btnFoto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btnEnviar"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="48dp"
+        android:src="@drawable/photo" />
 
 </RelativeLayout>
 

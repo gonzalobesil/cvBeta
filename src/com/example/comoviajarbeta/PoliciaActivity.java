@@ -4,6 +4,7 @@ import org.json.JSONObject;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -11,7 +12,9 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -42,6 +45,9 @@ public class PoliciaActivity extends Activity {
 	Button btnEnviar;
 	EditText textComentario;
 	TextView reportarErrorMsg;
+	CheckBox chkPoliciaVisible;
+	CheckBox chkPoliciaOculta;
+	ImageButton btnFoto;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -60,10 +66,12 @@ public class PoliciaActivity extends Activity {
 
 		// Importar los elementos contenidos en el layout
 		btnEnviar = (Button) findViewById(R.id.btnEnviar);
+		btnFoto = (ImageButton) findViewById(R.id.btnFoto);
 		textComentario = (EditText) findViewById(R.id.textComentario);
 		reportarErrorMsg = (TextView) findViewById(R.id.reportar_error);
-
-
+		chkPoliciaOculta=(CheckBox) findViewById(R.id.chkPoliciaEscondida);
+		chkPoliciaVisible=(CheckBox) findViewById(R.id.chkPoliciaVisible);
+				
 		/** Creating a progress dialog window */
 		mProgressDialog = new ProgressDialog(this);
 
@@ -86,6 +94,60 @@ public class PoliciaActivity extends Activity {
 
 				/** ProgressBar starts its execution */
 				mProgressbarAsync.execute();
+
+
+
+			}
+		});	
+		
+		// Login button Click Event	   			
+		btnEnviar.setOnClickListener(new OnClickListener() {
+
+			public void onClick(View view) {
+
+				mProgressDialog.show();
+
+				/** Creating an instance of ProgressBarAsync */
+				mProgressbarAsync = new ProgressBarAsync();
+
+				/** ProgressBar starts its execution */
+				mProgressbarAsync.execute();
+
+
+
+			}
+		});	
+		
+		// Login button Click Event	   			
+		btnFoto.setOnClickListener(new OnClickListener() {
+
+			public void onClick(View view) 
+			{
+					Intent i = new Intent(getApplicationContext(),
+							upload.class);
+					startActivity(i);
+					finish();
+			}
+		});	
+		
+		// Login button Click Event	   			
+		chkPoliciaOculta.setOnClickListener(new OnClickListener() {
+
+			public void onClick(View view) {
+
+				chkPoliciaVisible.setChecked(false);
+
+
+
+			}
+		});	
+		
+		// Login button Click Event	   			
+		chkPoliciaVisible.setOnClickListener(new OnClickListener() {
+
+			public void onClick(View view) {
+
+				chkPoliciaOculta.setChecked(false);
 
 
 
