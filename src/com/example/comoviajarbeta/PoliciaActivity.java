@@ -48,6 +48,8 @@ public class PoliciaActivity extends Activity {
 	CheckBox chkPoliciaVisible;
 	CheckBox chkPoliciaOculta;
 	ImageButton btnFoto;
+	String latitud ;
+	String longitud ;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -86,9 +88,18 @@ public class PoliciaActivity extends Activity {
 		btnEnviar.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View view) {
-
+				
 				mProgressDialog.show();
+				gps = new GPSTracker(PoliciaActivity.this);
 
+				// check if GPS enabled		
+				if(gps.canGetLocation()){
+					String comentario="";
+					latitud = String.valueOf(gps.getLatitude());
+					longitud = String.valueOf(gps.getLongitude());
+					if(textComentario.getText().toString()!="Comentario")
+						comentario=textComentario.getText().toString();
+				}
 				/** Creating an instance of ProgressBarAsync */
 				mProgressbarAsync = new ProgressBarAsync();
 
@@ -100,23 +111,7 @@ public class PoliciaActivity extends Activity {
 			}
 		});	
 		
-		// Login button Click Event	   			
-		btnEnviar.setOnClickListener(new OnClickListener() {
 
-			public void onClick(View view) {
-
-				mProgressDialog.show();
-
-				/** Creating an instance of ProgressBarAsync */
-				mProgressbarAsync = new ProgressBarAsync();
-
-				/** ProgressBar starts its execution */
-				mProgressbarAsync.execute();
-
-
-
-			}
-		});	
 		
 		// Login button Click Event	   			
 		btnFoto.setOnClickListener(new OnClickListener() {
@@ -168,8 +163,6 @@ public class PoliciaActivity extends Activity {
 		// check if GPS enabled		
 		if(gps.canGetLocation()){
 			String comentario="";
-			String latitud = String.valueOf(gps.getLatitude());
-			String longitud = String.valueOf(gps.getLongitude());
 			if(textComentario.getText().toString()!="Comentario")
 				comentario=textComentario.getText().toString();
 
