@@ -102,7 +102,7 @@ public class CustomAdapterEstacionCercana extends BaseAdapter   implements OnCli
 	        tempValues = (Estacion) data.get(position);
 	        
 	        /************  Set Model values in Holder elements ***********/
-	         holder.text.setText("distancia: " + Double.parseDouble(new DecimalFormat("##,##").format(tempValues.getDistancia()/1000)) + " kms");
+	         holder.text.setText("distancia: " + Double.parseDouble(new DecimalFormat("##.##").format(tempValues.getDistancia()/1000)) + " kms");
 	         holder.text1.setText(tempValues.getDireccion());
 	         holder.image.setImageResource(res.getIdentifier("com.example.comoviajarbeta:drawable/"+tempValues.getImagen(),null,null));
 	         
