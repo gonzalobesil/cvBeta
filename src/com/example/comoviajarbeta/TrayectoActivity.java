@@ -96,13 +96,17 @@ public class TrayectoActivity extends ExpandableListActivity {
 
 
 		// Evento de tocar el TextView destino	   			
-		destino.setOnClickListener(new OnClickListener() {
+		destino.setOnFocusChangeListener(new View.OnFocusChangeListener() {
 
-			public void onClick(View view) {
+
+			public void onFocusChange(View view, boolean arg1) {
+
+
+				//public void onClick(View view) {
 
 				String origen = ingresoOrigen.getText().toString();
 
-				if(validarOrigen(origen, listaOrigenes))
+				if(validarOrigen(origen, listaOrigenes) && listaDestinos.isEmpty())
 				{
 
 					//cargar los destinos posibles desde el origen seleccionado
@@ -135,16 +139,6 @@ public class TrayectoActivity extends ExpandableListActivity {
 
 
 				}
-				else
-				{
-					Context context = getApplicationContext();
-					CharSequence text = "Ingrese un orígen válido";
-					int duration = Toast.LENGTH_SHORT;
-					Toast toast = Toast.makeText(context, text, duration);
-					toast.setGravity(Gravity.TOP, 0, 20);
-					toast.show();
-				}
-
 			}
 		});
 
@@ -156,25 +150,25 @@ public class TrayectoActivity extends ExpandableListActivity {
 				String destinoSeleccionado = destino.getText().toString();
 				if(validarOrigen(destinoSeleccionado, listaDestinos))
 				{
-					
+
 					//Esconder teclado
 					InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 					imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
 
-					String transporte = "";
+					List<String> transporte = new ArrayList<String>();
 
 					//TODO: "Revisar al seleccionar mas de un tipo de trasnporte"
 
 					if(chkOmnibus.isChecked())
 					{
-						transporte = transporte + "1";
+						transporte.add("1");
 					}
 
 					if(chkBarco.isChecked())
 					{
-						transporte = transporte + "2";
+						transporte.add("2");
 					}
-					
+
 					if(transporte.equals(""))
 					{
 						Context context = getApplicationContext();
@@ -183,7 +177,7 @@ public class TrayectoActivity extends ExpandableListActivity {
 						Toast toast = Toast.makeText(context, text, duration);
 						toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
 						toast.show();
-						
+
 						return;
 					}
 
@@ -208,7 +202,7 @@ public class TrayectoActivity extends ExpandableListActivity {
 					mAdapter = new MyExpandableListAdapter(TrayectoActivity.this,CustomListViewValuesArr,respuestas);
 					setListAdapter(mAdapter);
 					//end expandable list view------------------------------------------------------------------
-					
+
 					if( CustomListViewValuesArr.size() == 0)
 					{
 						Context context = getApplicationContext();
@@ -238,8 +232,6 @@ public class TrayectoActivity extends ExpandableListActivity {
 
 			public void onClick(View view) {
 
-				//btnBuscar.performClick();
-
 				//Invertir origen y destino
 				String transporte = "";
 
@@ -254,7 +246,7 @@ public class TrayectoActivity extends ExpandableListActivity {
 				{
 					transporte = transporte + "2";
 				}
-				
+
 				if(transporte.equals(""))
 				{
 					Context context = getApplicationContext();
@@ -263,7 +255,7 @@ public class TrayectoActivity extends ExpandableListActivity {
 					Toast toast = Toast.makeText(context, text, duration);
 					toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
 					toast.show();
-					
+
 					return;
 				}
 
@@ -278,16 +270,23 @@ public class TrayectoActivity extends ExpandableListActivity {
 				idOrigen = mapaLugaresOrigen.get(ingresoOrigen.getText().toString());
 				List<Lugar> destinos = lugarDataSource.getDestinos(String.valueOf(idOrigen));
 
+				listaDestinos.clear();
+
 				for (Lugar lugar : destinos) {
 					mapaLugaresDestino.put(lugar.getNombre(),lugar.getId());
 					listaDestinos.add(lugar.getNombre());
 				}
 
+				String[] destinosArray = new String[listaDestinos.size()];
+				listaDestinos.toArray(destinosArray);
+				ArrayAdapter<String> adapter = new ArrayAdapter<String>(TrayectoActivity.this,android.R.layout.simple_spinner_item,destinosArray);
+				destino.setAdapter(adapter);
+
 				//Long idOrigen = mapaLugaresOrigen.get(ingresoOrigen.getText().toString());
 				Long idDestino = mapaLugaresDestino.get(destino.getText().toString());
 
 
-				setListData(idOrigen.toString(),idDestino.toString(),transporte);
+			//	setListData(idOrigen.toString(),idDestino.toString(),transporte);
 
 				// children array
 				String[] respuestas1 = getResources().getStringArray(R.array.capitals);
@@ -328,15 +327,18 @@ public class TrayectoActivity extends ExpandableListActivity {
 		return true;
 	}
 
-	public void setListData(String idOrigen, String idDestino, String transporte)
+	public void setListData(String idOrigen, String idDestino, List<String> transporte)
 	{
 		//Clear list content
 		CustomListViewValuesArr.clear();
 
 		// Create DAO object
 		trayectoDataSource = new TrayectoDataSource(this);
+		
+		String[] transportes = new String[transporte.size()];
+		transporte.toArray(transportes);
 
-		for (Trayecto e : trayectoDataSource.getTrayectosTransportes(idOrigen, idDestino, transporte)) {
+		for (Trayecto e : trayectoDataSource.getTrayectosTransportes(idOrigen, idDestino, transportes)) {
 
 			/******** Take Model Object in ArrayList **********/
 			CustomListViewValuesArr.add(e);

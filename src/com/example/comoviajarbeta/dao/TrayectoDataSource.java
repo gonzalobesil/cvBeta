@@ -50,6 +50,9 @@ public class TrayectoDataSource {
 	 * @param todoText
 	 */
 	public void createTrayectosPrueba() {
+		
+		open();
+		
 		ContentValues contentValues = new ContentValues();
 		
 		contentValues.put(TrayectoConstantes.COLUMN_ORIGEN_ID, "1");
@@ -84,6 +87,29 @@ public class TrayectoDataSource {
 	    // Insert into DB
 		long  id3= db.insert(TrayectoConstantes.TABLE_TRAYECTOS, null, contentValues);
 		Log.i(LOGTAG,"Se inserto un nuevo trayecto id:"+id3);
+		
+		//mismo trayecto distinto medio de transporte
+		contentValues.put(TrayectoConstantes.COLUMN_ORIGEN_ID, "1");
+		contentValues.put(TrayectoConstantes.COLUMN_DESTINO_ID, "2");
+		contentValues.put(TrayectoConstantes.COLUMN_HORA, "10:30");
+		contentValues.put(TrayectoConstantes.COLUMN_FRECUENCIA, "Barco");
+		contentValues.put(TrayectoConstantes.COLUMN_EMPRESA_ID, "1");
+		contentValues.put(TrayectoConstantes.COLUMN_TIPOTRANSPORTE_ID, "2");
+		
+	    // Insert into DB
+		long  id4= db.insert(TrayectoConstantes.TABLE_TRAYECTOS, null, contentValues);
+		Log.i(LOGTAG,"Se inserto un nuevo trayecto id:"+id4);
+		
+		contentValues.put(TrayectoConstantes.COLUMN_ORIGEN_ID, "2");
+		contentValues.put(TrayectoConstantes.COLUMN_DESTINO_ID, "1");
+		contentValues.put(TrayectoConstantes.COLUMN_HORA, "11:30");
+		contentValues.put(TrayectoConstantes.COLUMN_FRECUENCIA, "Barco");
+		contentValues.put(TrayectoConstantes.COLUMN_EMPRESA_ID, "1");
+		contentValues.put(TrayectoConstantes.COLUMN_TIPOTRANSPORTE_ID, "2");
+		
+	    // Insert into DB
+		long  id5= db.insert(TrayectoConstantes.TABLE_TRAYECTOS, null, contentValues);
+		Log.i(LOGTAG,"Se inserto un nuevo trayecto id:"+id5);
 		
 		close();
 
@@ -130,32 +156,40 @@ public class TrayectoDataSource {
 		return trayectoList;
 	}
 	
-	public List<Trayecto> getTrayectosTransportes(String idOrigen, String idDestino, String ...transportes) {
+	public List<Trayecto> getTrayectosTransportes(String idOrigen, String idDestino, String[] transportes) {
 		List<Trayecto> trayectoList = new ArrayList<Trayecto>();
 		
 		// Name of the columns we want to select
 		String[] tableColumns = new String[] {TrayectoConstantes.COLUMN_ID,TrayectoConstantes.COLUMN_ORIGEN_ID,TrayectoConstantes.COLUMN_DESTINO_ID,
 				TrayectoConstantes.COLUMN_HORA,TrayectoConstantes.COLUMN_FRECUENCIA,TrayectoConstantes.COLUMN_EMPRESA_ID,TrayectoConstantes.COLUMN_TIPOTRANSPORTE_ID};
-		
-		
-		//Seleccionar medios de transporte
-//		  String medios;
-//		   for (int i = 0; i < transportes.length; i++)
-//		   {
-//			   if( i > 0)
-//			   {
-//				   medios = TrayectoConstantes.COLUMN_TIPOTRANSPORTE_ID + " = " + transportes[i];
-//			   }
-//			   else
-//			   {
-//				   medios = TrayectoConstantes.COLUMN_TIPOTRANSPORTE_ID + " = " + transportes[i];
-//			   }
-//		   }
 		        
 		   
-		
+		String tq = "( ";
+		Cursor cursor = null;
 		// Query the database
-		Cursor cursor = db.query(TrayectoConstantes.TABLE_TRAYECTOS, tableColumns, TrayectoConstantes.COLUMN_ORIGEN_ID+"="+idOrigen + " AND " + TrayectoConstantes.COLUMN_DESTINO_ID + "=" + idDestino + " AND " + TrayectoConstantes.COLUMN_TIPOTRANSPORTE_ID+"=?", transportes, null, null, null);
+		if( transportes.length > 1)
+		{
+			
+			for (int i = 0; i<transportes.length; i++)
+			{
+				tq = tq + TrayectoConstantes.COLUMN_TIPOTRANSPORTE_ID + "=" + transportes[i];
+				if(i < transportes.length - 1)
+				{
+					tq = tq + " OR ";
+				}
+			}
+			
+			tq = tq + " )";
+			
+			cursor = db.query(TrayectoConstantes.TABLE_TRAYECTOS, tableColumns, TrayectoConstantes.COLUMN_ORIGEN_ID+"="+idOrigen + " AND " + TrayectoConstantes.COLUMN_DESTINO_ID + "=" + idDestino + " AND " + tq, null, null, null, null);
+			
+		}
+		else
+		{
+			cursor = db.query(TrayectoConstantes.TABLE_TRAYECTOS, tableColumns, TrayectoConstantes.COLUMN_ORIGEN_ID+"="+idOrigen + " AND " + TrayectoConstantes.COLUMN_DESTINO_ID + "=" + idDestino + " AND " + TrayectoConstantes.COLUMN_TIPOTRANSPORTE_ID+"=?", transportes, null, null, null);	
+		}
+		 
+		
 		cursor.moveToFirst();
 		
 		// Iterate the results
