@@ -37,9 +37,10 @@ public class upload extends Activity {
 	public void onCreate(Bundle icicle) {
 
 		super.onCreate(icicle);
-
 		setContentView(R.layout.policia_layout);
-		
+		Bundle bundle = getIntent().getExtras();
+		String tipoReporte = bundle.getString("tipoReporte");
+				
 		
 		  /*ContentValues values = new ContentValues();
 	      values.put(Media.TITLE, "My demo image");

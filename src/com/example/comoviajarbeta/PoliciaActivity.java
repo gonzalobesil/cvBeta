@@ -125,7 +125,9 @@ public class PoliciaActivity extends Activity {
 			{
 					Intent i = new Intent(getApplicationContext(),
 							upload.class);
+			    	//i.putExtra("tipoReporte", "Policia");
 					startActivity(i);
+
 					finish();
 			}
 		});	
