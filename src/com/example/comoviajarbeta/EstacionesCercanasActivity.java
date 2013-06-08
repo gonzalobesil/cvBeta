@@ -75,8 +75,8 @@ public class EstacionesCercanasActivity extends Activity
 			for (Estacion e : dataSource.getEstaciones()) {
 
 				Location dest = new Location("");
-				dest.setLatitude(Double.parseDouble(e.getLatitud()));
-				dest.setLongitude(Double.parseDouble(e.getLongitud()));
+				dest.setLatitude(Float.parseFloat(e.getLatitud()));
+				dest.setLongitude(Float.parseFloat(e.getLongitud()));
 
 				e.setDistancia(location.distanceTo(dest));
 				/******** Take Model Object in ArrayList **********/

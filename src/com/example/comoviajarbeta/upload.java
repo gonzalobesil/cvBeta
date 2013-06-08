@@ -38,10 +38,8 @@ public class upload extends Activity {
 
 		super.onCreate(icicle);
 		setContentView(R.layout.policia_layout);
-		Bundle bundle = getIntent().getExtras();
-		String tipoReporte = bundle.getString("tipoReporte");
-				
-		
+
+		String s="";
 		  /*ContentValues values = new ContentValues();
 	      values.put(Media.TITLE, "My demo image");
 	      values.put(Media.DESCRIPTION, "Image Captured by Camera via an Intent");
@@ -52,11 +50,12 @@ public class upload extends Activity {
 	      startActivityForResult(i, 0);
 */
 		
-		String filePath = Environment.getExternalStorageDirectory()+ "/your_image_name.jpeg";
+ 		String filePath = Environment.getExternalStorageDirectory()+ "/your_image_name.jpeg";
 	    File file = new File(filePath);
 	    Uri output = Uri.fromFile(file);
 	    Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 	    startActivityForResult(cameraIntent, CAMERA_REQUEST);
+
 	}
 	
 	@Override
@@ -66,7 +65,7 @@ public class upload extends Activity {
 	        if (requestCode == CAMERA_REQUEST) 
 	        { 
 	        	Bitmap bitmapOrg = (Bitmap)data.getExtras().get("data");//(getResources(), R.drawable.ic_launcher);
-
+	        	
 	    		ByteArrayOutputStream bao = new ByteArrayOutputStream();
 
 	    		bitmapOrg.compress(Bitmap.CompressFormat.JPEG, 90, bao);
@@ -75,30 +74,19 @@ public class upload extends Activity {
 
 	    		String ba1 = Base64.encodeToString(ba, 0);//encodeBytes(ba);
 
-	    		ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
 
-	    		nameValuePairs.add(new BasicNameValuePair("image",ba1));
 
-	    		try{
 
-	    			HttpClient httpclient = new DefaultHttpClient();
+	    			 Intent returnIntent = new Intent();
+	    			 returnIntent.putExtra("imagen",ba1);
+	    			 setResult(RESULT_OK,returnIntent);  
+	    			 finish();
 
-	    			HttpPost httppost = new HttpPost("http://www.comoviajar.com.uy/androide/base.php");
 
-	    			httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
-
-	    			HttpResponse response = httpclient.execute(httppost);
-
-	    			HttpEntity entity = response.getEntity();
-
-	    			is = entity.getContent();
-
-	    		}
-	    		catch(Exception e){
-
-	    			Log.e("log_tag", "Error in http connection "+e.toString());
-	    		}
 	        }
+	    }else
+	    {
+	    	this.finish();
 	    }
 	}
 }
