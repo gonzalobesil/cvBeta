@@ -1,4 +1,16 @@
 package com.example.comoviajarbeta;
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
+import java.util.ArrayList;
+
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -6,8 +18,10 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -50,7 +64,9 @@ public class PoliciaActivity extends Activity {
 	ImageButton btnFoto;
 	String latitud ;
 	String longitud ;
-
+	InputStream is;
+	String resultadoImagen;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -80,7 +96,9 @@ public class PoliciaActivity extends Activity {
 		/** Close the dialog window on pressing back button */
 		mProgressDialog.setCancelable(true);
 		mProgressDialog.setMessage("Enviando alerta..");
-
+		Bundle bundle = getIntent().getExtras();
+		chkPoliciaVisible.setChecked(true);
+		
 		/** Setting a horizontal style progress bar */
 		//  mProgressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
 
@@ -91,7 +109,10 @@ public class PoliciaActivity extends Activity {
 				
 				mProgressDialog.show();
 				gps = new GPSTracker(PoliciaActivity.this);
-
+				Bundle bundle =getIntent().getExtras();
+				String imagen ="";
+				if(bundle!=null)
+					imagen = bundle.getString("imagen");
 				// check if GPS enabled		
 				if(gps.canGetLocation()){
 					String comentario="";
@@ -121,9 +142,9 @@ public class PoliciaActivity extends Activity {
 					Intent i = new Intent(getApplicationContext(),
 							upload.class);
 			    	//i.putExtra("tipoReporte", "Policia");
-					startActivity(i);
+					startActivityForResult(i, 1);
 
-					finish();
+					//finish();
 			}
 		});	
 		
@@ -156,8 +177,30 @@ public class PoliciaActivity extends Activity {
 
 	}
 
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+		if (requestCode == 1) {
+
+		     if(resultCode == RESULT_OK){
+		     	 
+		       resultadoImagen=data.getStringExtra("imagen");}
+
+
+		}
+
+		if (resultCode == RESULT_CANCELED) {
+
+		     //Write your code on no result return 
+
+		}
+		
+		}//onAcrivityResult
 	public boolean enviarAlerta()
 	{
+		Bundle bundle = getIntent().getExtras();
+		String imagen ="";
+		if(bundle!=null)
+			imagen = bundle.getString("imagen");
 		gps = new GPSTracker(PoliciaActivity.this);
 
 		// check if GPS enabled		
@@ -169,9 +212,44 @@ public class PoliciaActivity extends Activity {
 			//Location location = new Location("");
 			//location.setLatitude(latitude);
 			//location.setLongitude(longitude);
+  		  	ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+		  
+  		  	nameValuePairs.add(new BasicNameValuePair("image",resultadoImagen));
+		      try{
 
+	    			HttpClient httpclient = new DefaultHttpClient();
+
+	    			HttpPost httppost = new HttpPost("http://www.comoviajar.com.uy/androide/base.php");
+
+	    			httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+
+	    			HttpResponse response = httpclient.execute(httppost);
+
+	    			HttpEntity entity = response.getEntity();
+
+	    			is = entity.getContent();
+
+
+	    		}
+	    		catch(Exception e){
+
+	    			Log.e("log_tag", "Error in http connection "+e.toString());
+	    		}
+		     
+		
 			ReportarFunciones reportarFunciones = new ReportarFunciones();
-			JSONObject json = reportarFunciones.reportar(latitud, longitud,comentario, "1");
+			//asdasdasdsdaasdasd asdas
+			//ksmdk
+			String tipoAlerta="0";
+			if(chkPoliciaVisible.isChecked())
+			{
+				tipoAlerta="1";
+			}
+			else
+			{
+				tipoAlerta="2";
+			}
+			JSONObject json = reportarFunciones.reportar(latitud, longitud,comentario, tipoAlerta);
 
 			// check for login response
 			try {
