@@ -199,7 +199,7 @@ public class TrayectoActivity extends ExpandableListActivity {
 					}
 
 					// Set up our adapter
-					mAdapter = new MyExpandableListAdapter(TrayectoActivity.this,CustomListViewValuesArr,respuestas);
+					mAdapter = new MyExpandableListAdapter(TrayectoActivity.this,CustomListViewValuesArr,respuestas,getResources());
 					setListAdapter(mAdapter);
 					//end expandable list view------------------------------------------------------------------
 
@@ -296,7 +296,7 @@ public class TrayectoActivity extends ExpandableListActivity {
 				}
 
 				// Set up our adapter
-				mAdapter = new MyExpandableListAdapter(TrayectoActivity.this,CustomListViewValuesArr,respuestas);
+				mAdapter = new MyExpandableListAdapter(TrayectoActivity.this,CustomListViewValuesArr,respuestas,getResources());
 				setListAdapter(mAdapter);
 
 				if(CustomListViewValuesArr.size() == 0)

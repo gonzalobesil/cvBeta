@@ -3,11 +3,13 @@ package com.example.comoviajarbeta;
 import java.util.ArrayList;
 
 import android.app.Activity;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.comoviajarbeta.data.Trayecto;
@@ -17,24 +19,31 @@ public class MyExpandableListAdapter extends BaseExpandableListAdapter {
 	private Activity activity;
 	private  ArrayList preguntas;
 	private String[][] respuestas;
+	public Resources res;
 	
 	public MyExpandableListAdapter(Activity activity,  ArrayList d,
-			String[][] respuestas) {
+			String[][] respuestas, Resources resLocal) {
 		super();
 		this.activity = activity;
 		this.preguntas = d;
 		this.respuestas = respuestas;
+		this.res = resLocal;
 	}
 
 	public Object getChild(int groupPosition, int childPosition) {
 		Trayecto t = (Trayecto) preguntas.get(groupPosition);
 		if(childPosition == 0)
 		{
-			return "Frecuencia :" + t.getFrecuencia();
+			return "Frecuencia:" + t.getFrecuencia();
+			
+		}
+		if(childPosition == 1)
+		{
+			return "Distancia:" + t.getDistancia();
 		}
 		else
 		{
-			return "Empresa: " + t.getEmpresa_id();
+			return "Teléfono: " + t.getEmpresa_id();
 		}
 		
 //		return respuestas[groupPosition][childPosition];
@@ -72,6 +81,7 @@ public class MyExpandableListAdapter extends BaseExpandableListAdapter {
 				R.layout.child, null);
 		//inflatedView.setPadding(50, 0, 0, 0);
 		TextView textView =(TextView)inflatedView.findViewById(R.id.textView1);
+		ImageView imageView = (ImageView)inflatedView.findViewById(R.id.imageView1);
 		
 		//lets set up a custom font
 //		Typeface font = Typeface.createFromAsset(activity.getAssets(),"BLOODY.ttf");
@@ -79,13 +89,24 @@ public class MyExpandableListAdapter extends BaseExpandableListAdapter {
 //		textView.setTextSize(17);
 		//distancia y duración---------------------------------------------------------------------------------
 		textView.setText(getChild(groupPosition, childPosition).toString());
+		
+		//setear imagen de detalle
+		if(childPosition == 0)
+		{
+			imageView.setImageResource(res.getIdentifier("com.example.comoviajarbeta:drawable/"+"calendar", null, null));
+		}
+		if(childPosition == 1)
+		{
+			imageView.setImageResource(res.getIdentifier("com.example.comoviajarbeta:drawable/"+"distancia", null, null));
+		}
+		
 		return inflatedView;
 	}
 
 	public Object getGroup(int groupPosition) {
 		//hora empresa frecuencia------------------------------------------------------------------------------
 		Trayecto t = (Trayecto) preguntas.get(groupPosition);
-		return t.getHora();
+		return t.getHora() + " Empresa: " + t.getEmpresa_id();
 	}
 
 	public int getGroupCount() {

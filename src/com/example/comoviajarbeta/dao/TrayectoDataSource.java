@@ -61,6 +61,7 @@ public class TrayectoDataSource {
 		contentValues.put(TrayectoConstantes.COLUMN_FRECUENCIA, "Omnibus");
 		contentValues.put(TrayectoConstantes.COLUMN_EMPRESA_ID, "1");
 		contentValues.put(TrayectoConstantes.COLUMN_TIPOTRANSPORTE_ID, "1");
+		contentValues.put(TrayectoConstantes.COLUMN_DISTANCIA, "200");
 		
 	    // Insert into DB
 		long  id= db.insert(TrayectoConstantes.TABLE_TRAYECTOS, null, contentValues);
@@ -72,6 +73,7 @@ public class TrayectoDataSource {
 		contentValues.put(TrayectoConstantes.COLUMN_FRECUENCIA, "Barco");
 		contentValues.put(TrayectoConstantes.COLUMN_EMPRESA_ID, "1");
 		contentValues.put(TrayectoConstantes.COLUMN_TIPOTRANSPORTE_ID, "2");
+		contentValues.put(TrayectoConstantes.COLUMN_DISTANCIA, "300");
 		
 	    // Insert into DB
 		long  id2= db.insert(TrayectoConstantes.TABLE_TRAYECTOS, null, contentValues);
@@ -83,6 +85,7 @@ public class TrayectoDataSource {
 		contentValues.put(TrayectoConstantes.COLUMN_FRECUENCIA, "Omnibus");
 		contentValues.put(TrayectoConstantes.COLUMN_EMPRESA_ID, "1");
 		contentValues.put(TrayectoConstantes.COLUMN_TIPOTRANSPORTE_ID, "1");
+		contentValues.put(TrayectoConstantes.COLUMN_DISTANCIA, "200");
 		
 	    // Insert into DB
 		long  id3= db.insert(TrayectoConstantes.TABLE_TRAYECTOS, null, contentValues);
@@ -95,6 +98,7 @@ public class TrayectoDataSource {
 		contentValues.put(TrayectoConstantes.COLUMN_FRECUENCIA, "Barco");
 		contentValues.put(TrayectoConstantes.COLUMN_EMPRESA_ID, "1");
 		contentValues.put(TrayectoConstantes.COLUMN_TIPOTRANSPORTE_ID, "2");
+		contentValues.put(TrayectoConstantes.COLUMN_DISTANCIA, "200");
 		
 	    // Insert into DB
 		long  id4= db.insert(TrayectoConstantes.TABLE_TRAYECTOS, null, contentValues);
@@ -106,10 +110,23 @@ public class TrayectoDataSource {
 		contentValues.put(TrayectoConstantes.COLUMN_FRECUENCIA, "Barco");
 		contentValues.put(TrayectoConstantes.COLUMN_EMPRESA_ID, "1");
 		contentValues.put(TrayectoConstantes.COLUMN_TIPOTRANSPORTE_ID, "2");
+		contentValues.put(TrayectoConstantes.COLUMN_DISTANCIA, "200");
 		
 	    // Insert into DB
 		long  id5= db.insert(TrayectoConstantes.TABLE_TRAYECTOS, null, contentValues);
 		Log.i(LOGTAG,"Se inserto un nuevo trayecto id:"+id5);
+		
+		contentValues.put(TrayectoConstantes.COLUMN_ORIGEN_ID, "3");
+		contentValues.put(TrayectoConstantes.COLUMN_DESTINO_ID, "1");
+		contentValues.put(TrayectoConstantes.COLUMN_HORA, "11:30");
+		contentValues.put(TrayectoConstantes.COLUMN_FRECUENCIA, "Barco");
+		contentValues.put(TrayectoConstantes.COLUMN_EMPRESA_ID, "1");
+		contentValues.put(TrayectoConstantes.COLUMN_TIPOTRANSPORTE_ID, "2");
+		contentValues.put(TrayectoConstantes.COLUMN_DISTANCIA, "300");
+		
+	    // Insert into DB
+		long  id6= db.insert(TrayectoConstantes.TABLE_TRAYECTOS, null, contentValues);
+		Log.i(LOGTAG,"Se inserto un nuevo trayecto id:"+id6);
 		
 		close();
 
@@ -126,7 +143,7 @@ public class TrayectoDataSource {
 		
 		// Name of the columns we want to select
 		String[] tableColumns = new String[] {TrayectoConstantes.COLUMN_ID,TrayectoConstantes.COLUMN_ORIGEN_ID,TrayectoConstantes.COLUMN_DESTINO_ID,
-				TrayectoConstantes.COLUMN_HORA,TrayectoConstantes.COLUMN_FRECUENCIA,TrayectoConstantes.COLUMN_EMPRESA_ID,TrayectoConstantes.COLUMN_TIPOTRANSPORTE_ID};
+				TrayectoConstantes.COLUMN_HORA,TrayectoConstantes.COLUMN_FRECUENCIA,TrayectoConstantes.COLUMN_EMPRESA_ID,TrayectoConstantes.COLUMN_TIPOTRANSPORTE_ID,TrayectoConstantes.COLUMN_DISTANCIA};
 		
 		// Query the database
 		Cursor cursor = db.query(TrayectoConstantes.TABLE_TRAYECTOS, tableColumns, null, null, null, null, null);
@@ -143,6 +160,7 @@ public class TrayectoDataSource {
 	     	trayecto.setFrecuencia(cursor.getString(cursor.getColumnIndex(TrayectoConstantes.COLUMN_FRECUENCIA)));
 	     	trayecto.setEmpresa_id(cursor.getLong(cursor.getColumnIndex(TrayectoConstantes.COLUMN_EMPRESA_ID)));
 	     	trayecto.setTipotransporte_id(cursor.getLong(cursor.getColumnIndex(TrayectoConstantes.COLUMN_TIPOTRANSPORTE_ID)));
+	     	trayecto.setDistancia(cursor.getString(cursor.getColumnIndex(TrayectoConstantes.COLUMN_DISTANCIA)));
 	    	
 	    	// Add to the DB
 	    	trayectoList.add(trayecto);
@@ -161,7 +179,7 @@ public class TrayectoDataSource {
 		
 		// Name of the columns we want to select
 		String[] tableColumns = new String[] {TrayectoConstantes.COLUMN_ID,TrayectoConstantes.COLUMN_ORIGEN_ID,TrayectoConstantes.COLUMN_DESTINO_ID,
-				TrayectoConstantes.COLUMN_HORA,TrayectoConstantes.COLUMN_FRECUENCIA,TrayectoConstantes.COLUMN_EMPRESA_ID,TrayectoConstantes.COLUMN_TIPOTRANSPORTE_ID};
+				TrayectoConstantes.COLUMN_HORA,TrayectoConstantes.COLUMN_FRECUENCIA,TrayectoConstantes.COLUMN_EMPRESA_ID,TrayectoConstantes.COLUMN_TIPOTRANSPORTE_ID,TrayectoConstantes.COLUMN_DISTANCIA};
 		        
 		   
 		String tq = "( ";
@@ -203,6 +221,7 @@ public class TrayectoDataSource {
 	     	trayecto.setFrecuencia(cursor.getString(cursor.getColumnIndex(TrayectoConstantes.COLUMN_FRECUENCIA)));
 	     	trayecto.setEmpresa_id(cursor.getLong(cursor.getColumnIndex(TrayectoConstantes.COLUMN_EMPRESA_ID)));
 	     	trayecto.setTipotransporte_id(cursor.getLong(cursor.getColumnIndex(TrayectoConstantes.COLUMN_TIPOTRANSPORTE_ID)));
+	     	trayecto.setDistancia(cursor.getString(cursor.getColumnIndex(TrayectoConstantes.COLUMN_DISTANCIA)));
 	    	
 	    	// Add to the DB
 	    	trayectoList.add(trayecto);
