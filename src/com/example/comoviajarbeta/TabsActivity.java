@@ -20,14 +20,14 @@ public class TabsActivity extends TabActivity {
         
          // Tab para estaciones cercanas
          TabSpec photospec = tabHost.newTabSpec("Cercanas");
-         photospec.setIndicator("Cercanas");
+         photospec.setIndicator("Cercanas", getResources().getDrawable(R.drawable.radar));
          Intent photosIntent = new Intent(this, EstacionesCercanasActivity.class);
          photospec.setContent(photosIntent);
          
          // Tab for Songs
          TabSpec songspec = tabHost.newTabSpec("Todas");
          // setting Title and Icon for the Tab
-         songspec.setIndicator("Todas");//indicator("Todas", getResources().getDrawable(R.drawable.btn_friends));
+         songspec.setIndicator("Todas", getResources().getDrawable(R.drawable.mapauruguay));
          Intent songsIntent = new Intent(this, DepartamentosActivity.class);
          songspec.setContent(songsIntent);
         
