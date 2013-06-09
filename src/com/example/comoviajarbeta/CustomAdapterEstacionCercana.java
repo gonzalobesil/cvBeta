@@ -1,6 +1,8 @@
 package com.example.comoviajarbeta;
 
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 
 import android.app.Activity;
@@ -101,8 +103,10 @@ public class CustomAdapterEstacionCercana extends BaseAdapter   implements OnCli
 	        tempValues=null;
 	        tempValues = (Estacion) data.get(position);
 	        
+	        char separator = decimalFormatCharacter();
+	        
 	        /************  Set Model values in Holder elements ***********/
-	         holder.text.setText("distancia: " + Double.parseDouble(new DecimalFormat("##.##").format(tempValues.getDistancia()/1000)) + " kms");
+	         holder.text.setText("distancia: " + Double.parseDouble(new DecimalFormat("##"+ separator + "##").format(tempValues.getDistancia()/1000)) + " kms");
 	         holder.text1.setText(tempValues.getDireccion());
 	         holder.image.setImageResource(res.getIdentifier("com.example.comoviajarbeta:drawable/"+tempValues.getImagen(),null,null));
 	         
@@ -130,5 +134,18 @@ public class CustomAdapterEstacionCercana extends BaseAdapter   implements OnCli
             EstacionesCercanasActivity sct = (EstacionesCercanasActivity)activity;
         	sct.onItemClick(mPosition);
         }               
-    }   
+    }
+    
+    public char decimalFormatCharacter()
+    {
+    	char decSeparator = 0;
+    	NumberFormat nf = NumberFormat.getInstance();
+        if(nf instanceof DecimalFormat) {
+            DecimalFormatSymbols sym = ((DecimalFormat) nf).getDecimalFormatSymbols();
+            decSeparator = sym.getDecimalSeparator();
+         
+        }
+        return decSeparator;
+    }
+    
 }
