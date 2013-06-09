@@ -17,6 +17,7 @@ public class Funciones {
 	private JSONParser jsonParser;
 	
 	private static String busquedaTrayectoUrl = "http://www.comoviajar.com.uy/androide/simple-rest/examples/trayecto";
+	private static String busquedaAlertasUrl = "http://www.comoviajar.com.uy/androide/obtenerAlertas.php";
 	private static String registerURL = "http://www.comoviajar.com.uy/androide/";
 	
 	private static String Busqueda_tag = "BusquedaTrayecto";
@@ -41,6 +42,14 @@ public class Funciones {
 		return json;
 	}
 	
+	public JSONObject busquedaAlertas(String latitud,String longitud){
+		// Building Parameters
+		List<NameValuePair> params = new ArrayList<NameValuePair>();
+		params.add(new BasicNameValuePair("latitud", latitud));
+		params.add(new BasicNameValuePair("longitud", longitud));
+		JSONObject json = jsonParser.getJSONFromUrl(busquedaAlertasUrl, params);
+		return json;
+	}
 	/**
 	 * function make Login Request
 	 * @param name

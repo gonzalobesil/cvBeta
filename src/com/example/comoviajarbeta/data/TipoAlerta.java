@@ -4,7 +4,8 @@ public class TipoAlerta {
 
 	private long id;
 	private String nombre;
-	private String telefono;
+	private int agrupacionAlerta;
+
 	private String imagen;
 
 	public long getId() {
@@ -23,6 +24,13 @@ public class TipoAlerta {
 		this.nombre = nombre;
 	}
 
+	public int getAgrupacionAlerta() {
+		return agrupacionAlerta;
+	}
+
+	public void setAgrupacionAlerta(int tipoAlerta) {
+		this.agrupacionAlerta = tipoAlerta;
+	}
 	public String getImagen() {
 		return imagen;
 	}
