@@ -18,6 +18,7 @@ public class mainActivity extends Activity {
 
 	// DAO//
 	//test
+	//asdas
 	private EstacionDataSource estacionDataSource;
 	private EmpresaDataSource empresaDataSource;
 	private RutaDataSource rutaDataSource;
@@ -112,50 +113,18 @@ public class mainActivity extends Activity {
 				startActivity(i);
 			}
 		});
-		//
-		//		// Listening Messages button click
-		//		btn_messages.setOnClickListener(new View.OnClickListener() {
-		//
-		//			@Override
-		//			public void onClick(View view) {
-		//				// Launching News Feed Screen
-		//				Intent i = new Intent(getApplicationContext(), MessagesActivity.class);
-		//				startActivity(i);
-		//			}
-		//		});
-		//
-		//		// Listening to Places button click
-		//		btn_places.setOnClickListener(new View.OnClickListener() {
-		//
-		//			@Override
-		//			public void onClick(View view) {
-		//				// Launching News Feed Screen
-		//				Intent i = new Intent(getApplicationContext(), PlacesActivity.class);
-		//				startActivity(i);
-		//			}
-		//		});
-		//
-		//		// Listening to Events button click
-		//		btn_events.setOnClickListener(new View.OnClickListener() {
-		//
-		//			@Override
-		//			public void onClick(View view) {
-		//				// Launching News Feed Screen
-		//				Intent i = new Intent(getApplicationContext(), EventsActivity.class);
-		//				startActivity(i);
-		//			}
-		//		});
-		//
-		//		// Listening to Photos button click
-		//		btn_photos.setOnClickListener(new View.OnClickListener() {
-		//
-		//			@Override
-		//			public void onClick(View view) {
-		//				// Launching News Feed Screen
-		//				Intent i = new Intent(getApplicationContext(), PhotosActivity.class);
-		//				startActivity(i);
-		//			}
-		//		});
+		
+		
+		btn_alertas.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View view) {
+				// Launching News Feed Screen
+				Intent i = new Intent(getApplicationContext(), AlertasNotificacionesActivity.class);
+				startActivity(i);
+			}
+		});
+		
 				
 		// Create DAO object
 		estacionDataSource = new EstacionDataSource(this);
