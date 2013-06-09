@@ -49,6 +49,8 @@
         </activity>
         <activity android:name="com.example.comoviajarbeta.TabsActivity" >
         </activity>
+        <activity android:name="com.example.comoviajarbeta.TipoAlertasActivity" >
+        </activity>
         <activity
             android:name="com.example.comoviajarbeta.upload"
             android:label="Upload" >

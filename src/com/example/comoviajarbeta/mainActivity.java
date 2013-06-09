@@ -120,7 +120,7 @@ public class mainActivity extends Activity {
 			@Override
 			public void onClick(View view) {
 				// Launching News Feed Screen
-				Intent i = new Intent(getApplicationContext(), AlertasNotificacionesActivity.class);
+				Intent i = new Intent(getApplicationContext(), TipoAlertasActivity.class);
 				startActivity(i);
 			}
 		});
