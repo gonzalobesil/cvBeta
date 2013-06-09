@@ -29,7 +29,7 @@
 	
     <!--  Places Button -->
     <Button
-        android:id="@+id/btn_places"
+        android:id="@+id/btn_alertas"
         style="@style/DashboardButton"
         android:drawableTop="@drawable/btn_places"
         android:text="Alertas" />

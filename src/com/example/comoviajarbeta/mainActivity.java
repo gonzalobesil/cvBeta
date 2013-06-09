@@ -51,6 +51,8 @@ public class mainActivity extends Activity {
 
 		// Dashboard Photos button
 		Button btn_empresas = (Button) findViewById(R.id.btn_empresas);
+		
+		Button btn_alertas = (Button) findViewById(R.id.btn_alertas);
 
 		/**
 		 * Handling all button click events
