@@ -60,6 +60,8 @@
             android:name="com.example.comoviajarbeta.AlertasNotificacionesActivity"
             android:label="@string/title_activity_alertas_notificaciones" >
         </activity>
+        
+        <service android:name=".MyService" />
     </application>
 
     <uses-permission android:name="android.permission.CAMERA" />
