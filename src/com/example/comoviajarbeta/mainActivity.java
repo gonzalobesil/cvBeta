@@ -31,8 +31,6 @@ public class mainActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
-		
-		startService(new Intent(getBaseContext(), MyService.class));
 
 		/**
 		 * Creating all buttons instances
